@@ -3,6 +3,10 @@
 #use package to scrape the image
 import wget
 import os
+import Tkinter as tk
+
+
+
 
 #some headers
 __author__ = "Ajay Krishna Teja Kavuri"
@@ -13,9 +17,13 @@ class UnsplashUbuntu(object):
 
 	def __init__(self):
 		self.baseUrl = "https://source.unsplash.com/random"
-		self.res = "/1920x1080"
+		self.myScreen = tk.Tk()
+		self.screen_width = self.myScreen.winfo_screenwidth()
+		self.screen_height = self.myScreen.winfo_screenheight()
+		self.res = "/"+str(self.screen_width)+"x"+str(self.screen_height)
 		self.cwd = os.getcwd()
 		self.filename="1920x1080"
+		
 		
 	def getWallpaper(self):
 		self.fullUrl = self.baseUrl + self.res
