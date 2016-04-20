@@ -4,45 +4,71 @@
 import wget
 import os
 import Tkinter as tk
-
+import time
+import threading
 
 
 
 #some headers
 __author__ = "Ajay Krishna Teja Kavuri"
 __copyright__ = "copyright 2016"
-__email__ = "ajaykrishnateja@gmail.coms"
+__email__ = "ajaykrishnateja@gmail.com"
 
 class UnsplashUbuntu(object):
 
-	def __init__(self):
-		self.baseUrl = "https://source.unsplash.com/random"
-		self.myScreen = tk.Tk()
-		self.screen_width = self.myScreen.winfo_screenwidth()
-		self.screen_height = self.myScreen.winfo_screenheight()
-		self.res = "/"+str(self.screen_width)+"x"+str(self.screen_height)
-		self.cwd = os.getcwd()
-		self.filename="1920x1080"
+	def __init__(self, interval):
+		try:
+			print "Initializing"
+			self.baseUrl = "https://source.unsplash.com/random"
+			self.myScreen = tk.Tk()
+			self.screen_width = self.myScreen.winfo_screenwidth()
+			self.screen_height = self.myScreen.winfo_screenheight()
+			self.res = "/"+str(self.screen_width)+"x"+str(self.screen_height)
+			self.cwd = os.getcwd()
+			self.filename=str(self.screen_width)+"x"+str(self.screen_height)
+			self.interval = interval
+			wpThread = threading.Thread(target=self.run)
+			wpThread.daemon = True
+			wpThread.setName('UnsplashUbuntu')
+			wpThread.start()
+			wpThread.join()
+
+		except:
+			print "Exception"
 		
 		
 	def getWallpaper(self):
-		self.fullUrl = self.baseUrl + self.res
-		self.filename = wget.download(self.fullUrl)
+		try:
+			self.fullUrl = self.baseUrl + self.res
+			self.filename = wget.download(self.fullUrl)
+		except:
+			print "Exception"
 
 	def setWallpaper(self):
-		self.setCmd = "gsettings set org.gnome.desktop.background picture-uri file:///"+self.cwd+"/"+self.filename
-		os.system(self.setCmd)
+		try:
+			self.setCmd = "gsettings set org.gnome.desktop.background picture-uri file:///"+self.cwd+"/"+self.filename
+			os.system(self.setCmd)
+		except:
+			print "Exception"
 
 	
 	def removeWallpaper(self):
 		self.filePath = self.cwd+"/"+self.filename
 		if os.path.exists(self.filePath):
 			os.remove(self.filePath)
+	
+	def run(self):
+		while True:
+			try:
+				print("Daemon Runs")
+				self.removeWallpaper()
+				self.getWallpaper()
+				self.setWallpaper()
+				time.sleep(self.interval)
+			except:
+				print "Exception"
 
-thisWallpaper = UnsplashUbuntu()
-thisWallpaper.removeWallpaper()
-thisWallpaper.getWallpaper()
-thisWallpaper.setWallpaper()
+thisWallpaper = UnsplashUbuntu(3600)
 
 
 
