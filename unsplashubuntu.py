@@ -5,14 +5,12 @@ import wget
 import os
 import Tkinter as tk
 
-
-
-
 #some headers
 __author__ = "Ajay Krishna Teja Kavuri"
 __copyright__ = "copyright 2016"
 __email__ = "ajaykrishnateja@gmail.coms"
 
+#The main class that initiates the url and screen parameters
 class UnsplashUbuntu(object):
 
 	def __init__(self):
@@ -22,7 +20,7 @@ class UnsplashUbuntu(object):
 		self.screen_height = self.myScreen.winfo_screenheight()
 		self.res = "/"+str(self.screen_width)+"x"+str(self.screen_height)
 		self.cwd = os.getcwd()
-		self.filename="1920x1080"
+		self.filename=str(self.screen_width)+"x"+str(self.screen_height)
 		
 		
 	def getWallpaper(self):
