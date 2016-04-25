@@ -7,13 +7,11 @@ import Tkinter as tk
 import time
 import threading
 
-
-
 #some headers
 __author__ = "Ajay Krishna Teja Kavuri"
-__copyright__ = "copyright 2016"
 __email__ = "ajaykrishnateja@gmail.com"
 
+#The main class that initiates the url and screen parameters
 class UnsplashUbuntu(object):
 
 	def __init__(self, interval):
@@ -35,7 +33,6 @@ class UnsplashUbuntu(object):
 
 		except:
 			print "Exception"
-		
 		
 	def getWallpaper(self):
 		try:
@@ -60,7 +57,7 @@ class UnsplashUbuntu(object):
 	def run(self):
 		while True:
 			try:
-				print("Daemon Runs")
+				print("Daemon Running....")
 				self.removeWallpaper()
 				self.getWallpaper()
 				self.setWallpaper()
