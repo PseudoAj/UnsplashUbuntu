@@ -24,7 +24,8 @@ A simple utility written in python that picks a high resolution random image fro
 1. (optional) Add the program on startup by going into launcher->startup applications
 
 ## Demo:
-[repository](http://i.giphy.com/3oEjHWvmcRT2rzahWM.gif)
+![demo](http://i.giphy.com/3oEjHWvmcRT2rzahWM.gif)
+
 ## Features:
 1. Lightweight process
 2. Supports multiple monitors
