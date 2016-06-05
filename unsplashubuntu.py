@@ -33,7 +33,7 @@ class UnsplashUbuntu(object):
 
 		except:
 			print "Exception"
-		
+
 	def getWallpaper(self):
 		try:
 			self.fullUrl = self.baseUrl + self.res
@@ -48,12 +48,12 @@ class UnsplashUbuntu(object):
 		except:
 			print "Exception"
 
-	
+
 	def removeWallpaper(self):
 		self.filePath = self.cwd+"/"+self.filename
 		if os.path.exists(self.filePath):
 			os.remove(self.filePath)
-	
+
 	def run(self):
 		while True:
 			try:
@@ -66,7 +66,3 @@ class UnsplashUbuntu(object):
 				print "Exception"
 
 thisWallpaper = UnsplashUbuntu(3600)
-
-
-
-		
