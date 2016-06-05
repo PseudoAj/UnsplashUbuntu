@@ -6,6 +6,7 @@ import os
 import Tkinter as tk
 import time
 import threading
+import urllib2
 
 #some headers
 __author__ = "Ajay Krishna Teja Kavuri"
@@ -34,6 +35,7 @@ class UnsplashUbuntu(object):
 		except:
 			print "Exception"
 
+	#Obtain the baserurl and concat the string
 	def getWallpaper(self):
 		try:
 			self.fullUrl = self.baseUrl + self.res
@@ -41,6 +43,7 @@ class UnsplashUbuntu(object):
 		except:
 			print "Exception"
 
+	#Run the command to change the wallpaper
 	def setWallpaper(self):
 		try:
 			self.setCmd = "gsettings set org.gnome.desktop.background picture-uri file:///"+self.cwd+"/"+self.filename
@@ -48,21 +51,35 @@ class UnsplashUbuntu(object):
 		except:
 			print "Exception"
 
-
+	#Remove the previous wallpaper before setting/downloading new one
 	def removeWallpaper(self):
 		self.filePath = self.cwd+"/"+self.filename
 		if os.path.exists(self.filePath):
 			os.remove(self.filePath)
 
+	#Check for the internet connection
+	def chkNetwork(self):
+		try:
+			res=urllib2.urlopen('http://wvu.edu',timeout=1)
+			return True
+		except urllib2.URLError as err:
+			pass
+		return False
+
+	#The main logic implementation
 	def run(self):
 		while True:
 			try:
-				print("Daemon Running....")
-				self.removeWallpaper()
-				self.getWallpaper()
-				self.setWallpaper()
-				time.sleep(self.interval)
+				if self.chkNetwork():
+					print("Daemon Running....")
+					self.removeWallpaper()
+					self.getWallpaper()
+					self.setWallpaper()
+					time.sleep(self.interval)
+				else:
+					time.sleep(self.interval/60)
 			except:
 				print "Exception"
 
+#Initialize and call the class
 thisWallpaper = UnsplashUbuntu(3600)
