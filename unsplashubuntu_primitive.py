@@ -50,7 +50,7 @@ class UnsplashUbuntu(object):
 	# Apply filter with primitive
 	def applyPrimitive(self):
 		try:
-			self.filtrCmd="primitive -i "+self.filePath+" -o "+self.filePath+self.fileExt+" -s "+str(self.screen_width)+" -n 250"
+			self.filtrCmd="primitive -i "+self.filePath+" -o "+self.filePath+self.fileExt+" -s "+str(self.screen_width)+" -n "+str(self.screen_width)
 			print("Executing \t"+str(self.filtrCmd))
 			os.system(self.filtrCmd)
 		except:
