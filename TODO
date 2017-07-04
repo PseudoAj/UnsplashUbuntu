@@ -7,3 +7,4 @@
     'pip install' to install and run the app and 
     document it in README[.rst | .md]
      i. Add 'main()' to define the entry point if needed
+4. Introduce unit tests and enable Travis CI to execute them
