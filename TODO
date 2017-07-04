@@ -1,0 +1,10 @@
+1. Migrate to the setuptools_scm approach for versioning as referred to by the bullet 7 at https://packaging.python.org/guides/single-sourcing-package-version/#single-sourcing-the-version
+2. Move the image download path outside the package
+     i. Handle this in source code
+    ii. Utilize 'package_data'/'data_files' as mentioned at
+	https://packaging.python.org/tutorials/distributing-packages/
+3. Update the packaging approach to enable a simple 'pip wheel' and 
+    'pip install' to install and run the app and 
+    document it in README[.rst | .md]
+     i. Add 'main()' to define the entry point if needed
+4. Introduce unit tests and enable Travis CI to execute them
