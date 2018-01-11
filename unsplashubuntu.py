@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-#use package to scrape the image
+#packages
 import wget
 import os
 import Tkinter as tk
